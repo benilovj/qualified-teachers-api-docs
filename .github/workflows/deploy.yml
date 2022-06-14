@@ -17,5 +17,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version-file: '.nvmrc'
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
 
     - run: mkdir source && npx openapi-merge-cli
