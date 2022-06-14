@@ -21,4 +21,4 @@ jobs:
       with:
         bundler-cache: true
 
-    - run: mkdir source && npx openapi-merge-cli
+    - run: bundle exec middleman build
