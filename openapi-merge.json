@@ -1,0 +1,11 @@
+{
+  "inputs": [
+    {
+      "inputURL": "https://raw.githubusercontent.com/DFE-Digital/qualified-teachers-api/main/docs/api-specs/v1.json"
+    },
+    {
+      "inputURL": "https://raw.githubusercontent.com/DFE-Digital/qualified-teachers-api/main/docs/api-specs/v2.json"
+    }
+  ],
+  "output": "./source/dqt-api.yaml"
+}

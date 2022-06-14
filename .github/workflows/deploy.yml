@@ -18,4 +18,4 @@ jobs:
       with:
         node-version: 14
 
-    - run: npx openapi-merge-cli
+    - run: mkdir source && npx openapi-merge-cli
