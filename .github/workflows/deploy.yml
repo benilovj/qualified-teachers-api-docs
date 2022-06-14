@@ -1,0 +1,21 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+    - main
+  schedule: # 06:00 UTC Mon-Fri
+    - cron: '0 6 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - run: npx openapi-merge-cli
