@@ -1,0 +1,1050 @@
+openapi: 3.0.3
+info:
+  title: DQT API
+  version: v1
+security:
+  - Bearer: []
+paths:
+  '/v1/teachers/{trn}':
+    get:
+      tags:
+        - Teachers
+      summary: Teacher
+      description: Get an individual teacher by their TRN
+      parameters:
+        - name: trn
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: birthdate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: nino
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTeacherResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/v2/teachers/{trn}/itt-outcome':
+    put:
+      tags:
+        - IttOutcome
+      summary: Sets ITT outcome for a teacher
+      parameters:
+        - name: trn
+          in: path
+          description: The TRN of the teacher to set ITT outcome for.
+          required: true
+          schema:
+            type: string
+        - name: birthdate
+          in: query
+          description: DoB of teacher
+          required: true
+          schema:
+            type: string
+            format: date
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetIttOutcomeRequest'
+            example:
+              ittProviderUkprn: '1001234'
+              outcome: Pass
+              assessmentDate: '2021-12-22'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SetIttOutcomeRequest'
+            example:
+              ittProviderUkprn: '1001234'
+              outcome: Pass
+              assessmentDate: '2021-12-22'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SetIttOutcomeRequest'
+            example:
+              ittProviderUkprn: '1001234'
+              outcome: Pass
+              assessmentDate: '2021-12-22'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetIttOutcomeResponse'
+              example:
+                trn: '1234567'
+                qtsDate: '2021-12-23'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /v2/itt-providers:
+    get:
+      tags:
+        - IttProviders
+      summary: Gets a list of all ITT Providers
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIttProvidersResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /v2/teachers/find:
+    get:
+      tags:
+        - Teachers
+      summary: Returns teachers matching the specified criteria
+      parameters:
+        - name: firstName
+          in: query
+          description: First name of person
+          schema:
+            type: string
+        - name: lastName
+          in: query
+          description: Last name of person
+          schema:
+            type: string
+        - name: previousFirstName
+          in: query
+          description: Previous first name of person
+          schema:
+            type: string
+        - name: previousLastName
+          in: query
+          description: Previous last name of person
+          schema:
+            type: string
+        - name: dateOfBirth
+          in: query
+          description: Date of birth of person
+          schema:
+            type: string
+            format: date
+        - name: nationalInsuranceNumber
+          in: query
+          description: National insurance number of person
+          schema:
+            type: string
+        - name: ittProviderName
+          in: query
+          description: Name of teacher training provider
+          schema:
+            type: string
+        - name: ittProviderUkprn
+          in: query
+          description: UKPRN of teacher training provider
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindTeachersResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/v2/teachers/update/{trn}':
+    patch:
+      tags:
+        - Teachers
+      summary: Updates a Teacher record
+      parameters:
+        - name: trn
+          in: path
+          description: The TRN of the teacher to update
+          required: true
+          schema:
+            type: string
+        - name: birthdate
+          in: query
+          description: DoB of teacher
+          required: true
+          schema:
+            type: string
+            format: date
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTeacherRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTeacherRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTeacherRequest'
+      responses:
+        '204':
+          description: Success
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/v2/trn-requests/{requestId}':
+    get:
+      tags:
+        - TrnRequests
+      summary: Retrieves a TRN request
+      parameters:
+        - name: requestId
+          in: path
+          description: The unique ID the TRN request was created with.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrnRequestInfo'
+              example:
+                requestId: 72888c5d-db14-4222-829b-7db9c2ec0dc3
+                status: Completed
+                trn: '1234567'
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - TrnRequests
+      summary: Creates a request for a TRN
+      parameters:
+        - name: requestId
+          in: path
+          description: >-
+            A unique ID that represents this request. If a request has already
+            been created with this ID then that existing record's result is
+            returned.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetOrCreateTrnRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetOrCreateTrnRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetOrCreateTrnRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrnRequestInfo'
+              example:
+                requestId: 72888c5d-db14-4222-829b-7db9c2ec0dc3
+                status: Completed
+                trn: '1234567'
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrnRequestInfo'
+              example:
+                requestId: 72888c5d-db14-4222-829b-7db9c2ec0dc3
+                status: Completed
+                trn: '1234567'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/v2/unlock-teacher/{teacherId}':
+    put:
+      tags:
+        - UnlockTeacher
+      description: >-
+        Unlocks the teacher record allowing the teacher to sign in to the
+        portals
+      parameters:
+        - name: teacherId
+          in: path
+          description: The ID of the teacher record to unlock
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    ClassDivision:
+      enum:
+        - FirstClassHonours
+        - UpperSecondClassHonours
+        - LowerSecondClassHonours
+        - UndividedSecondClassHonours
+        - ThirdClassHonours
+        - FourthClassHonours
+        - UnclassifiedHonours
+        - Aegrotat
+        - PassFollowingAnHonoursCourse
+        - Ordinary
+        - GeneralDegree
+        - Distinction
+        - Merit
+        - Pass
+        - Notapplicable
+        - NotKnown
+        - HigherDegree
+      type: string
+    ContactState:
+      enum:
+        - Active
+        - Inactive
+      type: string
+    GetTeacherResponse:
+      type: object
+      properties:
+        trn:
+          type: string
+          nullable: true
+        ni_number:
+          type: string
+          nullable: true
+        qualified_teacher_status:
+          $ref: '#/components/schemas/QualifiedTeacherStatus'
+        induction:
+          $ref: '#/components/schemas/Induction'
+        initial_teacher_training:
+          $ref: '#/components/schemas/InitialTeacherTraining'
+        qualifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Qualification'
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        dob:
+          type: string
+          format: date-time
+          nullable: true
+        active_alert:
+          type: boolean
+          nullable: true
+        state:
+          $ref: '#/components/schemas/ContactState'
+        state_name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Induction:
+      type: object
+      properties:
+        start_date:
+          type: string
+          format: date-time
+          nullable: true
+        completion_date:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        state:
+          $ref: '#/components/schemas/InductionState'
+        state_name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InductionState:
+      enum:
+        - Active
+        - Inactive
+      type: string
+    InitialTeacherTraining:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/InitialteachertrainingState'
+        state_code:
+          type: string
+          nullable: true
+        programme_start_date:
+          type: string
+          format: date-time
+          nullable: true
+        programme_end_date:
+          type: string
+          format: date-time
+          nullable: true
+        programme_type:
+          type: string
+          nullable: true
+        result:
+          type: string
+          nullable: true
+        subject1:
+          type: string
+          nullable: true
+        subject2:
+          type: string
+          nullable: true
+        subject3:
+          type: string
+          nullable: true
+        qualification:
+          type: string
+          nullable: true
+        subject1_code:
+          type: string
+          nullable: true
+        subject2_code:
+          type: string
+          nullable: true
+        subject3_code:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InitialteachertrainingState:
+      enum:
+        - Active
+        - Inactive
+      type: string
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    QtsregistrationState:
+      enum:
+        - Active
+        - Inactive
+      type: string
+    Qualification:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        date_awarded:
+          type: string
+          format: date-time
+          nullable: true
+        he_qualification_name:
+          type: string
+          nullable: true
+        he_subject1:
+          type: string
+          nullable: true
+        he_subject2:
+          type: string
+          nullable: true
+        he_subject3:
+          type: string
+          nullable: true
+        he_subject1_code:
+          type: string
+          nullable: true
+        he_subject2_code:
+          type: string
+          nullable: true
+        he_subject3_code:
+          type: string
+          nullable: true
+        class:
+          $ref: '#/components/schemas/ClassDivision'
+      additionalProperties: false
+    QualifiedTeacherStatus:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        state:
+          $ref: '#/components/schemas/QtsregistrationState'
+        state_name:
+          type: string
+          nullable: true
+        qts_date:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    FindTeacherResult:
+      type: object
+      properties:
+        trn:
+          type: string
+          nullable: true
+        emailAddresses:
+          type: array
+          items:
+            type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date
+          nullable: true
+        nationalInsuranceNumber:
+          type: string
+          nullable: true
+        uid:
+          type: string
+          nullable: true
+        hasActiveSanctions:
+          type: boolean
+      additionalProperties: false
+    FindTeachersResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindTeacherResult'
+      additionalProperties: false
+    Gender:
+      enum:
+        - Male
+        - Female
+        - Other
+        - NotProvided
+        - NotAvailable
+      type: string
+    GetIttProvidersResponse:
+      type: object
+      properties:
+        ittProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/IttProviderInfo'
+      additionalProperties: false
+    GetOrCreateTrnRequest:
+      required:
+        - birthDate
+        - firstName
+        - genderCode
+        - initialTeacherTraining
+        - lastName
+        - qualification
+      type: object
+      properties:
+        firstName:
+          type: string
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        emailAddress:
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/GetOrCreateTrnRequestAddress'
+        genderCode:
+          $ref: '#/components/schemas/Gender'
+        initialTeacherTraining:
+          $ref: '#/components/schemas/GetOrCreateTrnRequestInitialTeacherTraining'
+        qualification:
+          $ref: '#/components/schemas/GetOrCreateTrnRequestQualification'
+        husId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GetOrCreateTrnRequestAddress:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        addressLine3:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GetOrCreateTrnRequestInitialTeacherTraining:
+      required:
+        - programmeEndDate
+        - programmeStartDate
+        - programmeType
+        - providerUkprn
+      type: object
+      properties:
+        providerUkprn:
+          type: string
+        programmeStartDate:
+          type: string
+          format: date
+        programmeEndDate:
+          type: string
+          format: date
+        programmeType:
+          $ref: '#/components/schemas/IttProgrammeType'
+        subject1:
+          type: string
+          nullable: true
+        subject2:
+          type: string
+          nullable: true
+        subject3:
+          type: string
+          nullable: true
+        ageRangeFrom:
+          type: integer
+          format: int32
+          nullable: true
+        ageRangeTo:
+          type: integer
+          format: int32
+          nullable: true
+        ittQualificationType:
+          $ref: '#/components/schemas/IttQualificationType'
+      additionalProperties: false
+    GetOrCreateTrnRequestQualification:
+      type: object
+      properties:
+        providerUkprn:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+        subject:
+          type: string
+          nullable: true
+        class:
+          $ref: '#/components/schemas/ClassDivision'
+        date:
+          type: string
+          format: date
+          nullable: true
+        heQualificationType:
+          $ref: '#/components/schemas/HeQualificationType'
+      additionalProperties: false
+    HeQualificationType:
+      enum:
+        - BEd
+        - BEdHons
+        - BSc_Education
+        - BScHons_Education
+        - BTechEducation
+        - BTechHons_Education
+        - BA_Education
+        - BAHons_Education
+        - BACombinedStudies_EducationOfTheDeaf
+        - BAHonsCombinedStudies_EducationOfTheDeaf
+        - BAwithIntercalatedPGCE
+        - BScHonsWithIntercalatedPGCE
+        - BAHonsWithIntercalatedPGCE
+        - BachelorOfArts
+        - BachelorOfArtsEconomics
+        - BachelorOfArtsInArchitecture
+        - BachelorOftheArtOfObstetrics
+        - BachelorOfArchitecture
+        - BachelorOfAppliedScience
+        - BachelorOfAgriculture
+        - BachelorOfAccountancy
+        - BachelorOfAdministration
+        - BachelorOfBusinessAdministration
+        - BachelorOfCombinedStudies
+        - BachelorOfCommerce
+        - BachelorOfDivinity
+        - BachelorOfDentalSurgery
+        - BachelorOfEngineering
+        - BachelorOfEngineeringWithBusinessStudies
+        - BachelorOfFineArt
+        - BachelorOfGeneralStudies
+        - BachelorOfHumanities
+        - BachelorOfHygiene
+        - BachelorOfLaw
+        - BachelorOfLibrarianship
+        - BachelorOfLibrarianshipAndInfoStudies
+        - BachelorOfLiterature
+        - BachelorOfLandEconomy
+        - BachelorOfMedicalScience
+        - BachelorOfMedicine
+        - BachelorOfMetallurgy
+        - BachelorOfMetallurgyAndEngineering
+        - BachelorOfMusic
+        - BachelorOfNursing
+        - BachelorOfPharmacy
+        - BachelorOfScience
+        - BachelorOfScienceEconomics
+        - BachelorOfScienceAndEngineering
+        - BachelorOfScienceAndTechnology
+        - BachelorOfScienceInSocialScience
+        - BachelorOfScienceISpeechTherapy
+        - BachelorOfSocialScience
+        - BachelorOfSurgery
+        - BachelorOfChirurgiae
+        - BachelorOfTechnology
+        - BachelorOfTheology
+        - BachelorOfVeterinaryMedicine
+        - BachelorOfVeterinaryMedicineAndSurgery
+        - BachelorOfVeterinaryScience
+        - BachelorOfEducationScotlandAndNIreland
+        - BachelorOfPhilosophy
+        - MasterOfArts
+        - MasterOfLibrarianship
+        - MasterOfLiterature
+        - MasterOfMusic
+        - MasterOfPhilosophy
+        - MasterOfScience
+        - MasterOfTheology
+        - CertificateOfMembershipOfCranfieldInstituteOfTechnology
+        - MasterOfEducation
+        - MasterOfBusinessStudies
+        - MasterOfSocialStudies
+        - MasterOfEngineering
+        - MasterOfLaw
+        - MasterOfBusinessAdministration
+        - DoctorOfDivinity
+        - DoctorOfCivilLaw
+        - DoctorOfMedicine
+        - DoctorOfMusic
+        - DoctorOfScience
+        - DoctorOfPhilosophy
+        - PHD
+        - FirstDegree
+        - HigherDegree
+        - DegreeEquivalent
+        - Unknown
+      type: string
+    IttOutcome:
+      enum:
+        - Pass
+        - Fail
+        - Withdrawn
+        - Deferred
+        - DeferredForSkillsTests
+      type: string
+    IttProgrammeType:
+      enum:
+        - Core
+        - HEI
+        - SchoolDirectTrainingProgrammeSelfFunded
+        - SchoolDirectTrainingProgrammeSalaried
+        - SchoolDirectTrainingProgramme
+        - TeachFirstProgrammeCC
+        - TeachFirstProgramme
+        - OverseasTrainedTeacherProgramme
+        - RegisteredTeacherProgramme
+        - GraduateTeacherProgramme
+        - AssessmentOnlyRoute
+        - CoreFlexible
+        - LicensedTeacherProgramme
+        - UndergraduateOptIn
+        - EYITTAssessmentOnly
+        - EYITTGraduateEntry
+        - EYITTGraduateEmploymentBased
+        - EYITTUndergraduate
+        - EYITTSchoolDirectEarlyYears
+        - Apprenticeship
+        - FutureTeachingScholars
+      type: string
+    IttProviderInfo:
+      type: object
+      properties:
+        ukprn:
+          type: string
+        providerName:
+          type: string
+      additionalProperties: false
+    IttQualificationType:
+      enum:
+        - BEd
+        - BEdHons
+        - BSc
+        - BScHons
+        - BTech_Education
+        - BTechHons_Education
+        - BA
+        - BAHons
+        - BACombinedStudies_EducationOfTheDeaf
+        - BAHonsCombinedStudies_EducationOfTheDeaf
+        - BAEducationQTS
+        - BAWithIntercalatedPGCE
+        - BScHonsWithIntercalatedPGCE
+        - BAHonsWithIntercalatedPGCE
+        - BSc_EducationQTS
+        - BEngHons_Education
+        - BSc_CertificateInEducationQTS
+        - BA_CertificateInEducationQTS
+        - PostgraduateCertificateInEducationFlexible
+        - PostgraduateCertificateInEducation
+        - PGCForTeachersOfTheDeaf
+        - PostgraduateArtTeachersCertificate
+        - PostgraduateArtTeachersDiploma
+        - GraduateCertificateInScienceAndEducation
+        - GraduateCertificateInMathematicsAndEducation
+        - PGCEArticledTeachersScheme
+        - QTSAwardOnly
+        - UndergraduateMasterOfTeaching
+        - QTSAssessmentOnly
+        - CertificateInEducation
+        - ProfessionalGraduateCertificateInEducation
+        - CertificateInEducationFurtherEducation
+        - PostgraduateCertificateInEducationFurtherEducation
+        - TeachersCertificateFurtherEducation
+        - TeachersCertificate
+        - QualificationGainedInEurope
+        - ProfessionalGraduateDiplomaInEducation
+        - AssessmentOnlyRoute
+        - TeachFirstTNP
+        - TroopsToTeach
+        - OTTRecognition
+        - GTP
+        - RTP
+        - OTT
+        - OTTExemptFromInduction
+        - TeachFirst
+        - EEA
+        - Scotland
+        - NorthernIreland
+        - FE
+        - ISC
+        - FlexiblePGCE
+        - FlexibleAssessmentOnly
+        - LicensedTeacherProgramme
+        - FlexibleProfGCE
+        - Degree
+        - HigherDegree
+        - DegreeEquivalent
+        - NoQualificationRestrictedByOtherGTC
+        - Unknown
+      type: string
+    SetIttOutcomeRequest:
+      required:
+        - ittProviderUkprn
+        - outcome
+      type: object
+      properties:
+        ittProviderUkprn:
+          type: string
+        outcome:
+          $ref: '#/components/schemas/IttOutcome'
+        assessmentDate:
+          type: string
+          format: date
+          nullable: true
+      additionalProperties: false
+    SetIttOutcomeResponse:
+      type: object
+      properties:
+        trn:
+          type: string
+        qtsDate:
+          type: string
+          format: date
+          nullable: true
+      additionalProperties: false
+    TrnRequestInfo:
+      type: object
+      properties:
+        requestId:
+          type: string
+        status:
+          $ref: '#/components/schemas/TrnRequestStatus'
+        trn:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TrnRequestStatus:
+      enum:
+        - Pending
+        - Completed
+      type: string
+    UpdateTeacherRequest:
+      required:
+        - initialTeacherTraining
+        - qualification
+      type: object
+      properties:
+        initialTeacherTraining:
+          $ref: '#/components/schemas/UpdateTeacherRequestInitialTeacherTraining'
+        qualification:
+          $ref: '#/components/schemas/UpdateTeacherRequestQualification'
+        husId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UpdateTeacherRequestInitialTeacherTraining:
+      required:
+        - programmeEndDate
+        - programmeStartDate
+        - programmeType
+        - providerUkprn
+      type: object
+      properties:
+        providerUkprn:
+          type: string
+        programmeStartDate:
+          type: string
+          format: date
+        programmeEndDate:
+          type: string
+          format: date
+        programmeType:
+          $ref: '#/components/schemas/IttProgrammeType'
+        subject1:
+          type: string
+          nullable: true
+        subject2:
+          type: string
+          nullable: true
+        subject3:
+          type: string
+          nullable: true
+        ageRangeFrom:
+          type: integer
+          format: int32
+          nullable: true
+        ageRangeTo:
+          type: integer
+          format: int32
+          nullable: true
+        ittQualificationType:
+          $ref: '#/components/schemas/IttQualificationType'
+      additionalProperties: false
+    UpdateTeacherRequestQualification:
+      type: object
+      properties:
+        providerUkprn:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+        subject:
+          type: string
+          nullable: true
+        class:
+          $ref: '#/components/schemas/ClassDivision'
+        date:
+          type: string
+          format: date
+          nullable: true
+        heQualificationType:
+          $ref: '#/components/schemas/HeQualificationType'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: Bearer

@@ -1,0 +1,2735 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>DQT API - Qualified Teachers API</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="/">
+
+      <meta name="description" content="API documentation for the Qualified Teachers API" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:image" content="/images/govuk-large.png" />
+      <meta name="twitter:title" content="DQT API - Qualified Teachers API" />
+      <meta name="twitter:url" content="/" />
+
+      <meta property="og:description" content="API documentation for the Qualified Teachers API" />
+      <meta property="og:image" content="/images/govuk-large.png" />
+      <meta property="og:site_name" content="Qualified Teachers API" />
+      <meta property="og:title" content="DQT API" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://teacherservices.education.gov.uk/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Qualified Teachers API
+        </span>
+      </a>
+        <strong class="govuk-tag">Beta</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#dqt-api"><span>DQT API vv1</span></a>
+    <ul>
+      <li>
+        <a href="#v1-teachers-trn"><span>/v1/teachers/{trn}</span></a>
+        <ul>
+          <li>
+            <a href="#v1-teachers-trn-get"><span>get</span></a>
+            <ul>
+              <li>
+                <a href="#v1-teachers-trn-get-parameters"><span>Parameters</span></a>
+              </li>
+              <li>
+                <a href="#v1-teachers-trn-get-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#v2-teachers-trn-itt-outcome"><span>/v2/teachers/{trn}/itt-outcome</span></a>
+        <ul>
+          <li>
+            <a href="#v2-teachers-trn-itt-outcome-put"><span>put</span></a>
+            <ul>
+              <li>
+                <a href="#v2-teachers-trn-itt-outcome-put-parameters"><span>Parameters</span></a>
+              </li>
+              <li>
+                <a href="#v2-teachers-trn-itt-outcome-put-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#v2-itt-providers"><span>/v2/itt-providers</span></a>
+        <ul>
+          <li>
+            <a href="#v2-itt-providers-get"><span>get</span></a>
+            <ul>
+              <li>
+                <a href="#v2-itt-providers-get-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#v2-teachers-find"><span>/v2/teachers/find</span></a>
+        <ul>
+          <li>
+            <a href="#v2-teachers-find-get"><span>get</span></a>
+            <ul>
+              <li>
+                <a href="#v2-teachers-find-get-parameters"><span>Parameters</span></a>
+              </li>
+              <li>
+                <a href="#v2-teachers-find-get-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#v2-teachers-update-trn"><span>/v2/teachers/update/{trn}</span></a>
+        <ul>
+          <li>
+            <a href="#v2-teachers-update-trn-patch"><span>patch</span></a>
+            <ul>
+              <li>
+                <a href="#v2-teachers-update-trn-patch-parameters"><span>Parameters</span></a>
+              </li>
+              <li>
+                <a href="#v2-teachers-update-trn-patch-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#v2-trn-requests-requestid"><span>/v2/trn-requests/{requestId}</span></a>
+        <ul>
+          <li>
+            <a href="#v2-trn-requests-requestid-get"><span>get</span></a>
+            <ul>
+              <li>
+                <a href="#v2-trn-requests-requestid-get-parameters"><span>Parameters</span></a>
+              </li>
+              <li>
+                <a href="#v2-trn-requests-requestid-get-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#v2-trn-requests-requestid-put"><span>put</span></a>
+            <ul>
+              <li>
+                <a href="#v2-trn-requests-requestid-put-parameters"><span>Parameters</span></a>
+              </li>
+              <li>
+                <a href="#v2-trn-requests-requestid-put-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#v2-unlock-teacher-teacherid"><span>/v2/unlock-teacher/{teacherId}</span></a>
+        <ul>
+          <li>
+            <a href="#v2-unlock-teacher-teacherid-put"><span>put</span></a>
+            <ul>
+              <li>
+                <a href="#v2-unlock-teacher-teacherid-put-parameters"><span>Parameters</span></a>
+              </li>
+              <li>
+                <a href="#v2-unlock-teacher-teacherid-put-responses"><span>Responses</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#schemas"><span>Schemas</span></a>
+        <ul>
+          <li>
+            <a href="#schema-classdivision"><span>ClassDivision</span></a>
+          </li>
+          <li>
+            <a href="#schema-contactstate"><span>ContactState</span></a>
+          </li>
+          <li>
+            <a href="#schema-getteacherresponse"><span>GetTeacherResponse</span></a>
+          </li>
+          <li>
+            <a href="#schema-induction"><span>Induction</span></a>
+          </li>
+          <li>
+            <a href="#schema-inductionstate"><span>InductionState</span></a>
+          </li>
+          <li>
+            <a href="#schema-initialteachertraining"><span>InitialTeacherTraining</span></a>
+          </li>
+          <li>
+            <a href="#schema-initialteachertrainingstate"><span>InitialteachertrainingState</span></a>
+          </li>
+          <li>
+            <a href="#schema-problemdetails"><span>ProblemDetails</span></a>
+          </li>
+          <li>
+            <a href="#schema-qtsregistrationstate"><span>QtsregistrationState</span></a>
+          </li>
+          <li>
+            <a href="#schema-qualification"><span>Qualification</span></a>
+          </li>
+          <li>
+            <a href="#schema-qualifiedteacherstatus"><span>QualifiedTeacherStatus</span></a>
+          </li>
+          <li>
+            <a href="#schema-findteacherresult"><span>FindTeacherResult</span></a>
+          </li>
+          <li>
+            <a href="#schema-findteachersresponse"><span>FindTeachersResponse</span></a>
+          </li>
+          <li>
+            <a href="#schema-gender"><span>Gender</span></a>
+          </li>
+          <li>
+            <a href="#schema-getittprovidersresponse"><span>GetIttProvidersResponse</span></a>
+          </li>
+          <li>
+            <a href="#schema-getorcreatetrnrequest"><span>GetOrCreateTrnRequest</span></a>
+          </li>
+          <li>
+            <a href="#schema-getorcreatetrnrequestaddress"><span>GetOrCreateTrnRequestAddress</span></a>
+          </li>
+          <li>
+            <a href="#schema-getorcreatetrnrequestinitialteachertraining"><span>GetOrCreateTrnRequestInitialTeacherTraining</span></a>
+          </li>
+          <li>
+            <a href="#schema-getorcreatetrnrequestqualification"><span>GetOrCreateTrnRequestQualification</span></a>
+          </li>
+          <li>
+            <a href="#schema-hequalificationtype"><span>HeQualificationType</span></a>
+          </li>
+          <li>
+            <a href="#schema-ittoutcome"><span>IttOutcome</span></a>
+          </li>
+          <li>
+            <a href="#schema-ittprogrammetype"><span>IttProgrammeType</span></a>
+          </li>
+          <li>
+            <a href="#schema-ittproviderinfo"><span>IttProviderInfo</span></a>
+          </li>
+          <li>
+            <a href="#schema-ittqualificationtype"><span>IttQualificationType</span></a>
+          </li>
+          <li>
+            <a href="#schema-setittoutcomerequest"><span>SetIttOutcomeRequest</span></a>
+          </li>
+          <li>
+            <a href="#schema-setittoutcomeresponse"><span>SetIttOutcomeResponse</span></a>
+          </li>
+          <li>
+            <a href="#schema-trnrequestinfo"><span>TrnRequestInfo</span></a>
+          </li>
+          <li>
+            <a href="#schema-trnrequeststatus"><span>TrnRequestStatus</span></a>
+          </li>
+          <li>
+            <a href="#schema-updateteacherrequest"><span>UpdateTeacherRequest</span></a>
+          </li>
+          <li>
+            <a href="#schema-updateteacherrequestinitialteachertraining"><span>UpdateTeacherRequestInitialTeacherTraining</span></a>
+          </li>
+          <li>
+            <a href="#schema-updateteacherrequestqualification"><span>UpdateTeacherRequestQualification</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="dqt-api">DQT API vv1</h1>
+
+
+
+
+
+
+<h2 id="v1-teachers-trn">/v1/teachers/{trn}</h2>
+
+<h3 id="v1-teachers-trn-get">get</h3>
+
+  <p><em>Teacher</em></p>
+
+
+  <p>Get an individual teacher by their TRN</p>
+
+
+
+
+<h4 id="v1-teachers-trn-get-parameters">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>trn</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>birthdate</td>
+<td>query</td>
+<td>string</td>
+<td>true</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>nino</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h4 id="v1-teachers-trn-get-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>200</td>
+<td>
+<p>Success</p>
+
+
+
+<pre><code>{
+  "trn": "string",
+  "ni_number": "string",
+  "qualified_teacher_status": {
+    "name": "string",
+    "state": "string",
+    "state_name": "string",
+    "qts_date": "string"
+  },
+  "induction": {
+    "start_date": "string",
+    "completion_date": "string",
+    "status": "string",
+    "state": "string",
+    "state_name": "string"
+  },
+  "initial_teacher_training": {
+    "state": "string",
+    "state_code": "string",
+    "programme_start_date": "string",
+    "programme_end_date": "string",
+    "programme_type": "string",
+    "result": "string",
+    "subject1": "string",
+    "subject2": "string",
+    "subject3": "string",
+    "qualification": "string",
+    "subject1_code": "string",
+    "subject2_code": "string",
+    "subject3_code": "string"
+  },
+  "qualifications": [
+    {
+      "name": "string",
+      "date_awarded": "string",
+      "he_qualification_name": "string",
+      "he_subject1": "string",
+      "he_subject2": "string",
+      "he_subject3": "string",
+      "he_subject1_code": "string",
+      "he_subject2_code": "string",
+      "he_subject3_code": "string",
+      "class": "string"
+    }
+  ],
+  "name": "string",
+  "dob": "string",
+  "active_alert": "boolean",
+  "state": "string",
+  "state_name": "string"
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-getteacherresponse'>GetTeacherResponse</a>
+</td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>
+<p>Bad Request</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>
+<p>Not Found</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="v2-teachers-trn-itt-outcome">/v2/teachers/{trn}/itt-outcome</h2>
+
+<h3 id="v2-teachers-trn-itt-outcome-put">put</h3>
+
+  <p><em>Sets ITT outcome for a teacher</em></p>
+
+
+
+
+<h4 id="v2-teachers-trn-itt-outcome-put-parameters">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>trn</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td><p>The TRN of the teacher to set ITT outcome for.</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>birthdate</td>
+<td>query</td>
+<td>string</td>
+<td>true</td>
+<td><p>DoB of teacher</p>
+
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h4 id="v2-teachers-trn-itt-outcome-put-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>200</td>
+<td>
+<p>Success</p>
+
+
+
+<pre><code>{
+  "trn": "1234567",
+  "qtsDate": "2021-12-23"
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-setittoutcomeresponse'>SetIttOutcomeResponse</a>
+</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>
+<p>Not Found</p>
+
+
+
+<pre><code>{
+  "type": "string",
+  "title": "string",
+  "status": "integer",
+  "detail": "string",
+  "instance": "string"
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-problemdetails'>ProblemDetails</a>
+</td>
+</tr>
+
+<tr>
+<td>409</td>
+<td>
+<p>Conflict</p>
+
+
+
+<pre><code>{
+  "type": "string",
+  "title": "string",
+  "status": "integer",
+  "detail": "string",
+  "instance": "string"
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-problemdetails'>ProblemDetails</a>
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="v2-itt-providers">/v2/itt-providers</h2>
+
+<h3 id="v2-itt-providers-get">get</h3>
+
+  <p><em>Gets a list of all ITT Providers</em></p>
+
+
+
+
+
+
+
+<h4 id="v2-itt-providers-get-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>200</td>
+<td>
+<p>Success</p>
+
+
+
+<pre><code>{
+  "ittProviders": [
+    {
+      "ukprn": "string",
+      "providerName": "string"
+    }
+  ]
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-getittprovidersresponse'>GetIttProvidersResponse</a>
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="v2-teachers-find">/v2/teachers/find</h2>
+
+<h3 id="v2-teachers-find-get">get</h3>
+
+  <p><em>Returns teachers matching the specified criteria</em></p>
+
+
+
+
+<h4 id="v2-teachers-find-get-parameters">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>firstName</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>First name of person</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>lastName</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>Last name of person</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>previousFirstName</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>Previous first name of person</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>previousLastName</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>Previous last name of person</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>dateOfBirth</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>Date of birth of person</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>nationalInsuranceNumber</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>National insurance number of person</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>ittProviderName</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>Name of teacher training provider</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>ittProviderUkprn</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td><p>UKPRN of teacher training provider</p>
+
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h4 id="v2-teachers-find-get-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>200</td>
+<td>
+<p>Success</p>
+
+
+
+<pre><code>{
+  "results": [
+    {
+      "trn": "string",
+      "emailAddresses": [
+        {
+        }
+      ],
+      "firstName": "string",
+      "lastName": "string",
+      "dateOfBirth": "string",
+      "nationalInsuranceNumber": "string",
+      "uid": "string",
+      "hasActiveSanctions": "boolean"
+    }
+  ]
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-findteachersresponse'>FindTeachersResponse</a>
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="v2-teachers-update-trn">/v2/teachers/update/{trn}</h2>
+
+<h3 id="v2-teachers-update-trn-patch">patch</h3>
+
+  <p><em>Updates a Teacher record</em></p>
+
+
+
+
+<h4 id="v2-teachers-update-trn-patch-parameters">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>trn</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td><p>The TRN of the teacher to update</p>
+
+
+</td>
+</tr>
+
+<tr>
+<td>birthdate</td>
+<td>query</td>
+<td>string</td>
+<td>true</td>
+<td><p>DoB of teacher</p>
+
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h4 id="v2-teachers-update-trn-patch-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>204</td>
+<td>
+<p>Success</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="v2-trn-requests-requestid">/v2/trn-requests/{requestId}</h2>
+
+<h3 id="v2-trn-requests-requestid-get">get</h3>
+
+  <p><em>Retrieves a TRN request</em></p>
+
+
+
+
+<h4 id="v2-trn-requests-requestid-get-parameters">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>requestId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td><p>The unique ID the TRN request was created with.</p>
+
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h4 id="v2-trn-requests-requestid-get-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>200</td>
+<td>
+<p>Success</p>
+
+
+
+<pre><code>{
+  "requestId": "72888c5d-db14-4222-829b-7db9c2ec0dc3",
+  "status": "Completed",
+  "trn": "1234567"
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-trnrequestinfo'>TrnRequestInfo</a>
+</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>
+<p>Not Found</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<h3 id="v2-trn-requests-requestid-put">put</h3>
+
+  <p><em>Creates a request for a TRN</em></p>
+
+
+
+
+<h4 id="v2-trn-requests-requestid-put-parameters">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>requestId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td><p>A unique ID that represents this request. If a request has already been created with this ID then that existing record&rsquo;s result is returned.</p>
+
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h4 id="v2-trn-requests-requestid-put-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>200</td>
+<td>
+<p>Success</p>
+
+
+
+<pre><code>{
+  "requestId": "72888c5d-db14-4222-829b-7db9c2ec0dc3",
+  "status": "Completed",
+  "trn": "1234567"
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-trnrequestinfo'>TrnRequestInfo</a>
+</td>
+</tr>
+
+<tr>
+<td>201</td>
+<td>
+<p>Success</p>
+
+
+
+<pre><code>{
+  "requestId": "72888c5d-db14-4222-829b-7db9c2ec0dc3",
+  "status": "Completed",
+  "trn": "1234567"
+}</code></pre>
+
+</td>
+<td>
+<a href='#schema-trnrequestinfo'>TrnRequestInfo</a>
+</td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>
+<p>Bad Request</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="v2-unlock-teacher-teacherid">/v2/unlock-teacher/{teacherId}</h2>
+
+<h3 id="v2-unlock-teacher-teacherid-put">put</h3>
+
+
+  <p>Unlocks the teacher record allowing the teacher to sign in to the portals</p>
+
+
+
+
+<h4 id="v2-unlock-teacher-teacherid-put-parameters">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>teacherId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td><p>The ID of the teacher record to unlock</p>
+
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+<h4 id="v2-unlock-teacher-teacherid-put-responses">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>204</td>
+<td>
+<p>Success</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>
+<p>Not Found</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td>429</td>
+<td>
+<p>Too Many Requests</p>
+
+
+
+</td>
+<td>
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+
+<h2 id="schemas">Schemas</h2>
+<h3 id="schema-classdivision">ClassDivision</h3>
+
+
+<h3 id="schema-contactstate">ContactState</h3>
+
+
+<h3 id="schema-getteacherresponse">GetTeacherResponse</h3>
+
+
+<table class='schema-getteacherresponse'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>trn</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>ni_number</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>qualified_teacher_status</td>
+<td>object</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-qualifiedteacherstatus'>QualifiedTeacherStatus</a>
+</td>
+</tr>
+
+<tr>
+<td>induction</td>
+<td>object</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-induction'>Induction</a>
+</td>
+</tr>
+
+<tr>
+<td>initial_teacher_training</td>
+<td>object</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-initialteachertraining'>InitialTeacherTraining</a>
+</td>
+</tr>
+
+<tr>
+<td>qualifications</td>
+<td>array</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-qualification'>Qualification</a>
+</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>dob</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>active_alert</td>
+<td>boolean</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>state</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-contactstate'>ContactState</a>
+</td>
+</tr>
+
+<tr>
+<td>state_name</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-induction">Induction</h3>
+
+
+<table class='schema-induction'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>start_date</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>completion_date</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>state</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-inductionstate'>InductionState</a>
+</td>
+</tr>
+
+<tr>
+<td>state_name</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-inductionstate">InductionState</h3>
+
+
+<h3 id="schema-initialteachertraining">InitialTeacherTraining</h3>
+
+
+<table class='schema-initialteachertraining'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>state</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-initialteachertrainingstate'>InitialteachertrainingState</a>
+</td>
+</tr>
+
+<tr>
+<td>state_code</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programme_start_date</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programme_end_date</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programme_type</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>result</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject1</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject2</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject3</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>qualification</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject1_code</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject2_code</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject3_code</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-initialteachertrainingstate">InitialteachertrainingState</h3>
+
+
+<h3 id="schema-problemdetails">ProblemDetails</h3>
+
+
+<table class='schema-problemdetails'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>type</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>title</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td>integer</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>detail</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>instance</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-qtsregistrationstate">QtsregistrationState</h3>
+
+
+<h3 id="schema-qualification">Qualification</h3>
+
+
+<table class='schema-qualification'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>name</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>date_awarded</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>he_qualification_name</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>he_subject1</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>he_subject2</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>he_subject3</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>he_subject1_code</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>he_subject2_code</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>he_subject3_code</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>class</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-classdivision'>ClassDivision</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-qualifiedteacherstatus">QualifiedTeacherStatus</h3>
+
+
+<table class='schema-qualifiedteacherstatus'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>name</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>state</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-qtsregistrationstate'>QtsregistrationState</a>
+</td>
+</tr>
+
+<tr>
+<td>state_name</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>qts_date</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-findteacherresult">FindTeacherResult</h3>
+
+
+<table class='schema-findteacherresult'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>trn</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>emailAddresses</td>
+<td>array</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>dateOfBirth</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>nationalInsuranceNumber</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>hasActiveSanctions</td>
+<td>boolean</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-findteachersresponse">FindTeachersResponse</h3>
+
+
+<table class='schema-findteachersresponse'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>results</td>
+<td>array</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-findteacherresult'>FindTeacherResult</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-gender">Gender</h3>
+
+
+<h3 id="schema-getittprovidersresponse">GetIttProvidersResponse</h3>
+
+
+<table class='schema-getittprovidersresponse'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>ittProviders</td>
+<td>array</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-ittproviderinfo'>IttProviderInfo</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-getorcreatetrnrequest">GetOrCreateTrnRequest</h3>
+
+
+<table class='schema-getorcreatetrnrequest'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>middleName</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>birthDate</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>emailAddress</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>address</td>
+<td>object</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-getorcreatetrnrequestaddress'>GetOrCreateTrnRequestAddress</a>
+</td>
+</tr>
+
+<tr>
+<td>genderCode</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-gender'>Gender</a>
+</td>
+</tr>
+
+<tr>
+<td>initialTeacherTraining</td>
+<td>object</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-getorcreatetrnrequestinitialteachertraining'>GetOrCreateTrnRequestInitialTeacherTraining</a>
+</td>
+</tr>
+
+<tr>
+<td>qualification</td>
+<td>object</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-getorcreatetrnrequestqualification'>GetOrCreateTrnRequestQualification</a>
+</td>
+</tr>
+
+<tr>
+<td>husId</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-getorcreatetrnrequestaddress">GetOrCreateTrnRequestAddress</h3>
+
+
+<table class='schema-getorcreatetrnrequestaddress'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>addressLine1</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>addressLine2</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>addressLine3</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>city</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>postalCode</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>country</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-getorcreatetrnrequestinitialteachertraining">GetOrCreateTrnRequestInitialTeacherTraining</h3>
+
+
+<table class='schema-getorcreatetrnrequestinitialteachertraining'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>providerUkprn</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programmeStartDate</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programmeEndDate</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programmeType</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-ittprogrammetype'>IttProgrammeType</a>
+</td>
+</tr>
+
+<tr>
+<td>subject1</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject2</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject3</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>ageRangeFrom</td>
+<td>integer</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>ageRangeTo</td>
+<td>integer</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>ittQualificationType</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-ittqualificationtype'>IttQualificationType</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-getorcreatetrnrequestqualification">GetOrCreateTrnRequestQualification</h3>
+
+
+<table class='schema-getorcreatetrnrequestqualification'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>providerUkprn</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>countryCode</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>class</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-classdivision'>ClassDivision</a>
+</td>
+</tr>
+
+<tr>
+<td>date</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>heQualificationType</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-hequalificationtype'>HeQualificationType</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-hequalificationtype">HeQualificationType</h3>
+
+
+<h3 id="schema-ittoutcome">IttOutcome</h3>
+
+
+<h3 id="schema-ittprogrammetype">IttProgrammeType</h3>
+
+
+<h3 id="schema-ittproviderinfo">IttProviderInfo</h3>
+
+
+<table class='schema-ittproviderinfo'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>ukprn</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>providerName</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-ittqualificationtype">IttQualificationType</h3>
+
+
+<h3 id="schema-setittoutcomerequest">SetIttOutcomeRequest</h3>
+
+
+<table class='schema-setittoutcomerequest'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>ittProviderUkprn</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>outcome</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-ittoutcome'>IttOutcome</a>
+</td>
+</tr>
+
+<tr>
+<td>assessmentDate</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-setittoutcomeresponse">SetIttOutcomeResponse</h3>
+
+
+<table class='schema-setittoutcomeresponse'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>trn</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>qtsDate</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-trnrequestinfo">TrnRequestInfo</h3>
+
+
+<table class='schema-trnrequestinfo'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>requestId</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-trnrequeststatus'>TrnRequestStatus</a>
+</td>
+</tr>
+
+<tr>
+<td>trn</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-trnrequeststatus">TrnRequestStatus</h3>
+
+
+<h3 id="schema-updateteacherrequest">UpdateTeacherRequest</h3>
+
+
+<table class='schema-updateteacherrequest'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>initialTeacherTraining</td>
+<td>object</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-updateteacherrequestinitialteachertraining'>UpdateTeacherRequestInitialTeacherTraining</a>
+</td>
+</tr>
+
+<tr>
+<td>qualification</td>
+<td>object</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-updateteacherrequestqualification'>UpdateTeacherRequestQualification</a>
+</td>
+</tr>
+
+<tr>
+<td>husId</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-updateteacherrequestinitialteachertraining">UpdateTeacherRequestInitialTeacherTraining</h3>
+
+
+<table class='schema-updateteacherrequestinitialteachertraining'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>providerUkprn</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programmeStartDate</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programmeEndDate</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>programmeType</td>
+<td>string</td>
+<td>true</td>
+<td></td>
+<td>
+  <a href='#schema-ittprogrammetype'>IttProgrammeType</a>
+</td>
+</tr>
+
+<tr>
+<td>subject1</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject2</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject3</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>ageRangeFrom</td>
+<td>integer</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>ageRangeTo</td>
+<td>integer</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>ittQualificationType</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-ittqualificationtype'>IttQualificationType</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3 id="schema-updateteacherrequestqualification">UpdateTeacherRequestQualification</h3>
+
+
+<table class='schema-updateteacherrequestqualification'>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+
+<tr>
+<td>providerUkprn</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>countryCode</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>subject</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>class</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-classdivision'>ClassDivision</a>
+</td>
+</tr>
+
+<tr>
+<td>date</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  
+</td>
+</tr>
+
+<tr>
+<td>heQualificationType</td>
+<td>string</td>
+<td>false</td>
+<td></td>
+<td>
+  <a href='#schema-hequalificationtype'>HeQualificationType</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
