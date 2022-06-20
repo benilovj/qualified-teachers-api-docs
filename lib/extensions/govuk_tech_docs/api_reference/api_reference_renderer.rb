@@ -15,7 +15,7 @@ module Extensions
         end
 
         def get_renderer(file)
-          if ["schema.html.erb", "request_body.html.erb"].include?(file)
+          if ["schema.html.erb", "request_body.html.erb", "operation.html.erb"].include?(file)
             template_path = File.join(File.dirname(__FILE__), "templates/" + file)
             template = File.open(template_path, "r").read
             ERB.new(template)
